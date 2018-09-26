@@ -12,4 +12,4 @@ push:
   script:
     - docker push gpii/exekube:0.4.0-google
   only:
-    - master@gpii-ops/gpii-infra
+    - master@gpii-ops/exekube
