@@ -74,6 +74,21 @@ variable "dashboard_disabled" {
   description = "Disable Kubernetes Dashboard"
 }
 
+variable "master_auth_username" {
+  default     = ""
+  description = "The username to use for HTTP basic authentication"
+}
+
+variable "master_auth_password" {
+  default     = ""
+  description = "The password to use for HTTP basic authentication"
+}
+
+variable "issue_client_certificate" {
+  default     = true
+  description = "Whether client certificate authorization is enabled"
+}
+
 variable "create_timeout" {
   default = "30m"
 }

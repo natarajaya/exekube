@@ -79,6 +79,14 @@ resource "google_container_cluster" "cluster" {
     provider = "CALICO"
   }
 
+  master_auth {
+    username = "${var.master_auth_username}"
+    password = "${var.master_auth_password}"
+
+    client_certificate_config {
+      issue_client_certificate = "${var.issue_client_certificate}"
+    }
+  }
 
   provisioner "local-exec" {
     command = <<EOF
