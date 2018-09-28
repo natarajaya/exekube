@@ -70,7 +70,7 @@ variable "logging_service" {
 }
 
 variable "dashboard_disabled" {
-  default = false
+  default     = false
   description = "Disable Kubernetes Dashboard"
 }
 
