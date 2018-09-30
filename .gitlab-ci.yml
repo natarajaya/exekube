@@ -11,3 +11,5 @@ push:
   stage: push
   script:
     - docker push gpii/exekube:0.4.0-google
+  only:
+    - master@gpii-ops/exekube

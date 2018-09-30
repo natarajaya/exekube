@@ -41,7 +41,7 @@ resource "google_container_cluster" "cluster" {
     }
 
     kubernetes_dashboard {
-      disabled = false
+      disabled = "${var.dashboard_disabled}"
     }
 
     http_load_balancing {
@@ -96,5 +96,11 @@ creator-cluster-admin-binding \
 --user=$(gcloud info --format='value(config.account)') \
 && helm init --client-only
 EOF
+  }
+
+  timeouts {
+    create = "${var.create_timeout}"
+    update = "${var.update_timeout}"
+    delete = "${var.delete_timeout}"
   }
 }
