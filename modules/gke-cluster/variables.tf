@@ -74,6 +74,8 @@ variable "dashboard_disabled" {
   description = "Disable Kubernetes Dashboard"
 }
 
+# Setting both password and username to empty strings (module default)
+# disables legacy basic authentication
 variable "master_auth_username" {
   default     = ""
   description = "The username to use for HTTP basic authentication"
