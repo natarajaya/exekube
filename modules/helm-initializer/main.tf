@@ -44,7 +44,8 @@ data "external" "tiller_status" {
   program = [
     "bash",
     "-c",
-    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'"]
+    "REPLICAS=$$(kubectl get deploy tiller-deploy -n ${var.tiller_namespace} -o jsonpath='{.status.readyReplicas}'); jq -n --arg replicas \"$$REPLICAS\" '{readyReplicas:$$replicas}'",
+  ]
 }
 
 resource "null_resource" "install_tiller" {
