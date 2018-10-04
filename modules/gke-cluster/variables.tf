@@ -70,8 +70,23 @@ variable "logging_service" {
 }
 
 variable "dashboard_disabled" {
-  default = false
+  default     = false
   description = "Disable Kubernetes Dashboard"
+}
+
+variable "master_auth_username" {
+  default     = ""
+  description = "The username to use for HTTP basic authentication (setting both password and username to empty strings disables legacy basic authentication)"
+}
+
+variable "master_auth_password" {
+  default     = ""
+  description = "The password to use for HTTP basic authentication (setting both password and username to empty strings disables legacy basic authentication)"
+}
+
+variable "issue_client_certificate" {
+  default     = true
+  description = "Whether client certificate authorization is enabled"
 }
 
 variable "create_timeout" {
