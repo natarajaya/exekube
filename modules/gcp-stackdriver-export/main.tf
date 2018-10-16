@@ -132,3 +132,15 @@ resource "google_storage_bucket_iam_binding" "exported-logs-writer-custom-encryp
     "${google_logging_project_sink.my-export-custom-encryption.*.writer_identity}",
   ]
 }
+
+# When writing to a bucket with custom encryption, we must also allow the GCS
+# Service Account to access the associated Cloud KMS Key.
+data "google_storage_project_service_account" "gcs_account" {}
+
+resource "google_kms_crypto_key_iam_binding" "exported-logs-writer-custom-encryption" {
+  count         = "${var.exported_logs_encryption_key == "" ? 0 : 1}"
+  crypto_key_id = "${var.exported_logs_encryption_key}"
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+
+  members       = ["serviceAccount:${data.google_storage_project_service_account.gcs_account.email_address}"]
+}
