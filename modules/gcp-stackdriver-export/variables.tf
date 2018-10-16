@@ -21,6 +21,10 @@ variable "exports" {
   default = {}
 }
 
+variable "exported_logs_force_destroy" {
+  default = "true"
+}
+
 variable "exported_logs_storage_class" {
   default = "REGIONAL"
 }

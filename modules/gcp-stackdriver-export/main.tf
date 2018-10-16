@@ -19,7 +19,7 @@ provider "google" {
 resource "google_storage_bucket" "exported-logs" {
   count         = "${var.exported_logs_encryption_key == "" ? 1 : 0}"
   name          = "${var.project_id}-exported-logs"
-  force_destroy = true
+  force_destroy = "${var.exported_logs_force_destroy}"
   storage_class = "${var.exported_logs_storage_class}"
   location      = "${var.exported_logs_storage_region}"
 
@@ -41,7 +41,7 @@ resource "google_storage_bucket" "exported-logs" {
 resource "google_storage_bucket" "exported-logs-custom-encryption" {
   count         = "${var.exported_logs_encryption_key == "" ? 0 : 1}"
   name          = "${var.project_id}-exported-logs"
-  force_destroy = true
+  force_destroy = "${var.exported_logs_force_destroy}"
   storage_class = "${var.exported_logs_storage_class}"
   location      = "${var.exported_logs_storage_region}"
 
