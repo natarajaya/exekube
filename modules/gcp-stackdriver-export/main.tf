@@ -113,18 +113,20 @@ resource "google_logging_project_sink" "my-export-custom-encryption" {
 
 # Because our sink uses a unique_writer, we must grant that writer access to
 # the bucket.
-resource "google_project_iam_binding" "exported-logs-writer" {
-  count = "${var.exported_logs_encryption_key == "" ? 1 : 0}"
-  role  = "roles/storage.objectCreator"
+resource "google_storage_bucket_iam_binding" "exported-logs-writer" {
+  count  = "${var.exported_logs_encryption_key == "" ? 1 : 0}"
+  bucket = "${google_storage_bucket.exported-logs.name}"
+  role   = "roles/storage.objectCreator"
 
   members = [
     "${google_logging_project_sink.my-export.*.writer_identity}",
   ]
 }
 
-resource "google_project_iam_binding" "exported-logs-writer-custom-encryption" {
-  count = "${var.exported_logs_encryption_key == "" ? 0 : 1}"
-  role  = "roles/storage.objectCreator"
+resource "google_storage_bucket_iam_binding" "exported-logs-writer-custom-encryption" {
+  count  = "${var.exported_logs_encryption_key == "" ? 0 : 1}"
+  bucket = "${google_storage_bucket.exported-logs-custom-encryption.name}"
+  role   = "roles/storage.objectCreator"
 
   members = [
     "${google_logging_project_sink.my-export-custom-encryption.*.writer_identity}",
