@@ -43,13 +43,18 @@ RUN apk --no-cache add \
         apache2-utils \
         tzdata \
         jq \
-        make \
-        g++ \
         ruby \
-        ruby-dev \
         ruby-json
 
-RUN gem install --no-ri --no-rdoc rake google-cloud-monitoring
+RUN apk --no-cache add \
+        g++ \
+        make \
+        ruby-dev && \
+    gem install --no-ri --no-rdoc rake google-cloud-monitoring && \
+    apk del \
+        g++ \
+        make \
+        ruby-dev
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${CLOUD_SDK_VERSION}-linux-x86_64.tar.gz \
