@@ -29,7 +29,7 @@ ENV KUBECTL_VERSION 1.10.5
 ENV HELM_VERSION 2.9.1
 ENV TERRAFORM_VERSION 0.11.7
 ENV TERRAGRUNT_VERSION 0.14.10
-ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.0
+ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
 
 RUN apk --no-cache add \
         curl \
@@ -80,11 +80,10 @@ RUN curl -L -o ./terragrunt \
         && mv terragrunt /usr/bin
 
 RUN curl -L -o ./tph.tar.gz \
-        https://github.com/mcuadros/terraform-provider-helm/releases/download/v${TERRAFORM_PROVIDER_HELM_VERSION}/terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION}_linux_amd64.tar.gz \
+        https://github.com/gpii-ops/terraform-provider-helm/releases/download/v${TERRAFORM_PROVIDER_HELM_VERSION}/terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION}_linux_amd64.tar.gz \
         && tar -xvzf tph.tar.gz \
         && rm -rf tph.tar.gz \
         && cd terraform-provider-helm_linux_amd64 \
-        && mv terraform-provider-helm terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && chmod 0700 terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} \
         && mkdir -p /root/.terraform.d/plugins/ \
         && mv terraform-provider-helm_v${TERRAFORM_PROVIDER_HELM_VERSION} /root/.terraform.d/plugins/
