@@ -50,7 +50,7 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
-    gem install --no-ri --no-rdoc rake google-cloud-monitoring && \
+    gem install --no-ri --no-rdoc rake google-cloud-monitoring google-cloud-logging && \
     apk del \
         g++ \
         make \
