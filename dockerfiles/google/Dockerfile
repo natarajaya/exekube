@@ -28,6 +28,8 @@ ENV HELM_VERSION 2.9.1
 ENV TERRAFORM_VERSION 0.11.7
 ENV TERRAGRUNT_VERSION 0.14.10
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
+ENV GOOGLE_CLOUD_MONITORING_VERSION 0.29.2
+ENV GOOGLE_CLOUD_LOGGING_VERSION 1.5.7
 
 RUN apk --no-cache add \
         curl \
@@ -50,7 +52,7 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
-    gem install --no-ri --no-rdoc rake google-cloud-monitoring:0.29.2 google-cloud-logging:1.5.7 && \
+    gem install --no-ri --no-rdoc rake google-cloud-monitoring:${GOOGLE_CLOUD_MONITORING_VERSION} google-cloud-logging:${GOOGLE_CLOUD_LOGGING_VERSION} && \
     apk del \
         g++ \
         make \
