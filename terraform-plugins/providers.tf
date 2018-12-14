@@ -4,6 +4,10 @@ provider "google" {
   version = "~> 1.16"
 }
 
+provider "google-beta" {
+  version = "~> 1.19"
+}
+
 provider "random" {
   version = "~> 1.3"
 }
