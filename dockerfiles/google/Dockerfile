@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # First stage: compiling Exekube CLI
 # ------------------------------------------------------------------------------
-FROM golang:1.9-alpine AS builder
+FROM golang:1.11.2-alpine3.8 AS builder
 
 RUN apk add --no-cache \
         git
@@ -20,7 +20,7 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 # Second stage: getting all runtime deps
 # ------------------------------------------------------------------------------
-FROM alpine:3.7
+FROM alpine:3.8
 
 ENV CLOUD_SDK_VERSION 208.0.2
 ENV KUBECTL_VERSION 1.10.5
@@ -52,6 +52,9 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
+    # Following is needed for various native exptension issues on Alpine with protobuf and grpc plugins
+    gem update --system --no-ri --no-rdoc && \
+    gem install --no-ri google-protobuf:3.6.1 etc grpc --platform=ruby && \
     gem install --no-ri --no-rdoc rake google-cloud-monitoring:${GOOGLE_CLOUD_MONITORING_VERSION} google-cloud-logging:${GOOGLE_CLOUD_LOGGING_VERSION} && \
     apk del \
         g++ \
