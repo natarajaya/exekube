@@ -1,41 +1,41 @@
 # This is the list of Terraform plugins to be installed in the exekube container
 
 provider "google" {
-  version = "~> 1.16"
+  version = "~> 1.20.0"
 }
 
 provider "google-beta" {
-  version = "~> 1.19"
+  version = "~> 1.20.0"
 }
 
 provider "random" {
-  version = "~> 1.3"
+  version = "~> 2.0.0"
 }
 
 provider "null" {
-  version = "~> 1.0"
+  version = "~> 1.0.0"
 }
 
 provider "kubernetes" {
-  version = "~> 1.1"
+  version = "~> 1.4.0"
 }
 
 provider "template" {
-  version = "~> 1.0"
+  version = "~> 1.0.0"
 }
 
 provider "tls" {
-  version = "~> 1.2"
+  version = "~> 1.2.0"
 }
 
 provider "local" {
-  version = "~> 1.1"
+  version = "~> 1.1.0"
 }
 
 provider "external" {
-  version = "~> 1.0"
+  version = "~> 1.0.0"
 }
 
 provider "aws" {
-  version = "~> 1.36"
+  version = "~> 1.52.0"
 }
