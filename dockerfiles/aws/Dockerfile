@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # First stage: compiling Exekube CLI
 # ------------------------------------------------------------------------------
-FROM golang:1.9-alpine AS builder
+FROM golang:1.11.2-alpine3.8 AS builder
 
 RUN apk add --no-cache \
         git
@@ -20,16 +20,18 @@ RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 # ------------------------------------------------------------------------------
 # Second stage: getting all runtime deps
 # ------------------------------------------------------------------------------
-FROM alpine:3.7
+FROM alpine:3.8
 
 ENV AWS_CLI_VERSION 1.15.41
 ENV S3CMD_VERSION 2.0.1
 ENV HEPTIO_AUTHENTICATOR_AWS_VERSION 0.3.0
-ENV KUBECTL_VERSION 1.10.5
-ENV HELM_VERSION 2.9.1
-ENV TERRAFORM_VERSION 0.11.7
-ENV TERRAGRUNT_VERSION 0.14.10
+ENV KUBECTL_VERSION 1.11.5
+ENV HELM_VERSION 2.12.0
+ENV TERRAFORM_VERSION 0.11.10
+ENV TERRAGRUNT_VERSION 0.17.3
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
+# Terragrunt cache directory
+ENV TERRAGRUNT_DOWNLOAD /tmp/.terragrunt-cache
 
 RUN apk --no-cache add \
         curl \

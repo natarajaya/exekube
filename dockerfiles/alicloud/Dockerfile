@@ -1,5 +1,5 @@
 # First stage -- compiling Exekube CLI
-FROM golang:1.9-alpine AS builder
+FROM golang:1.11.2-alpine3.8 AS builder
 
 RUN apk add --no-cache \
         git
@@ -16,15 +16,17 @@ ADD ./cli ./src/github.com/exekube/exekube/cli
 RUN go build -o ./bin/xk github.com/exekube/exekube/cli
 
 # Second stage -- getting all runtime deps
-FROM alpine:3.7
+FROM alpine:3.8
 
 ENV ALIYUN_VERSION 3.0.0
-ENV HELM_VERSION 2.8.2
-ENV KUBECTL_VERSION 1.9.3
-ENV TERRAFORM_VERSION 0.11.5
-ENV TERRAGRUNT_VERSION 0.14.6
+ENV HELM_VERSION 2.12.0
+ENV KUBECTL_VERSION 1.11.5
+ENV TERRAFORM_VERSION 0.11.10
+ENV TERRAGRUNT_VERSION 0.17.3
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
 ENV TERRAFORM_PROVIDER_ALICLOUD_VERSION 1.9.1
+# Terragrunt cache directory
+ENV TERRAGRUNT_DOWNLOAD /tmp/.terragrunt-cache
 
 RUN apk --no-cache add \
         curl \
