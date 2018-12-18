@@ -30,7 +30,7 @@ ENV TERRAGRUNT_VERSION 0.17.3
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
 ENV GOOGLE_CLOUD_MONITORING_VERSION 0.29.2
 ENV GOOGLE_CLOUD_LOGGING_VERSION 1.5.7
-# Terragrun tcache directory
+# Terragrunt cache directory
 ENV TERRAGRUNT_DOWNLOAD /tmp/.terragrunt-cache
 
 RUN apk --no-cache add \
@@ -54,7 +54,6 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
-    # Following is needed for various native exptension issues on Alpine with protobuf and grpc plugins
     gem update --system --no-ri --no-rdoc && \
     gem install --no-ri google-protobuf:3.6.1 etc grpc --platform=ruby && \
     gem install --no-ri --no-rdoc rake google-cloud-monitoring:${GOOGLE_CLOUD_MONITORING_VERSION} google-cloud-logging:${GOOGLE_CLOUD_LOGGING_VERSION} && \
