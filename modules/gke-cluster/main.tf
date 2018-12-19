@@ -204,7 +204,7 @@ resource "google_container_cluster" "cluster-regional" {
 
   provisioner "local-exec" {
     command = <<EOF
-gcloud auth activate-service-account --key-file ${var.serviceaccount_key} \
+if [ "${var.serviceaccount_key}" != "" ] && [ -f ${var.serviceaccount_key} ]; then gcloud auth activate-service-account --key-file ${var.serviceaccount_key}; fi \
 && gcloud container clusters get-credentials ${var.cluster_name} \
 --region ${var.region} \
 --project ${var.project_id} \
