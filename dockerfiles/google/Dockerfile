@@ -54,7 +54,6 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
-    gem update --system --no-ri --no-rdoc && \
     gem install --no-ri google-protobuf:3.6.1 etc grpc --platform=ruby && \
     gem install --no-ri --no-rdoc rake google-cloud-monitoring:${GOOGLE_CLOUD_MONITORING_VERSION} google-cloud-logging:${GOOGLE_CLOUD_LOGGING_VERSION} && \
     apk del \
