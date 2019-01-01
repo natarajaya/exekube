@@ -24,7 +24,7 @@ FROM alpine:3.8
 
 ENV CLOUD_SDK_VERSION 228.0.0
 ENV KUBECTL_VERSION 1.11.5
-ENV HELM_VERSION 2.12.0
+ENV HELM_VERSION 2.12.1
 ENV TERRAFORM_VERSION 0.11.10
 ENV TERRAGRUNT_VERSION 0.17.3
 ENV TERRAFORM_PROVIDER_HELM_VERSION 0.6.2
@@ -54,7 +54,6 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
-    gem update --system --no-ri --no-rdoc && \
     gem install --no-ri google-protobuf:3.6.1 etc grpc --platform=ruby && \
     gem install --no-ri --no-rdoc rake google-cloud-monitoring:${GOOGLE_CLOUD_MONITORING_VERSION} google-cloud-logging:${GOOGLE_CLOUD_LOGGING_VERSION} && \
     apk del \
