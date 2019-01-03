@@ -20,6 +20,8 @@ provider "google" {
 # ------------------------------------------------------------------------------
 
 resource "null_resource" "add_audit_config" {
+  count = "${var.apply_audit_config ? 1 : 0}"
+
   provisioner "local-exec" {
     command    = "bash ${path.module}/scripts/add-audit-config"
     on_failure = "continue"

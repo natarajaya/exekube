@@ -27,3 +27,8 @@ variable "encryption_keys" {
 
   default = []
 }
+
+variable "apply_audit_config" {
+  description = "Set this to false if you don't want to modify current project's IAM policy to apply audit config provided by scripts/add-audit-config"
+  default     = true
+}
