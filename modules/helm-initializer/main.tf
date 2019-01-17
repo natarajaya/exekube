@@ -69,21 +69,20 @@ resource "null_resource" "install_tiller" {
       RETRY_COUNT=1
       while [ "$TILLER_READY" != "true" ]; do
         echo "[Try $RETRY_COUNT of $RETRIES] Waiting for Tiller..."
-        TILLER_READY="true"
         helm version \
           --tls --tls-verify \
           --tls-ca-cert=${local_file.ca_cert.filename} \
           --tls-cert=${local_file.helm_cert.filename} \
           --tls-key=${local_file.helm_key.filename} \
           --tiller-connection-timeout ${var.tiller_connection_timeout} > /dev/null 2> /dev/null
-        if [ "$?" != "0" ]; then
-          TILLER_READY="false"
+        if [ "$?" == "0" ]; then
+          TILLER_READY="true"
         fi
         if [ "$RETRY_COUNT" == "$RETRIES" ] && [ "$TILLER_READY" != "true" ]; then
           echo "Retry limit reached, giving up!"
           exit 1
         fi
-        if [ "$TILLER_READY" == "false" ]; then
+        if [ "$TILLER_READY" != "true" ]; then
           sleep 10
         fi
         RETRY_COUNT=$(($RETRY_COUNT+1))
