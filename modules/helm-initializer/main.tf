@@ -55,8 +55,8 @@ resource "null_resource" "install_tiller" {
 
   provisioner "local-exec" {
     command = <<EOF
-      echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f -
-      helm init \
+      echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
+      && helm init \
         --tiller-namespace ${var.tiller_namespace} \
         --service-account tiller \
         --tiller-tls \
