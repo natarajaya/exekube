@@ -67,6 +67,7 @@ resource "null_resource" "install_tiller" {
         --override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}'
       RETRIES=10
       RETRY_COUNT=1
+      TILLER_READY="false"
       while [ "$TILLER_READY" != "true" ]; do
         echo "[Try $RETRY_COUNT of $RETRIES] Waiting for Tiller..."
         helm version \
