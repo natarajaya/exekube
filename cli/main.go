@@ -41,7 +41,7 @@ func main() {
 		{
 			Name:    "apply",
 			Aliases: []string{},
-			Usage:   "Apply a modules in a path",
+			Usage:   "Apply a module in a path",
 			Action: func(c *cli.Context) error {
 				err := runTerragruntCmd(c)
 				if err != nil {
@@ -65,7 +65,7 @@ func main() {
 		{
 			Name:    "destroy",
 			Aliases: []string{},
-			Usage:   "Destroy a modules in a path",
+			Usage:   "Destroy a module in a path",
 			Action: func(c *cli.Context) error {
 				err := runTerragruntCmd(c)
 				if err != nil {
