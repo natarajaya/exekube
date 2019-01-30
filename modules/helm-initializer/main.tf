@@ -57,6 +57,7 @@ resource "null_resource" "install_tiller" {
     command = <<EOF
       echo '${data.template_file.tiller_rbac.rendered}' | kubectl apply -f - \
       && helm init \
+        --upgrade \
         --tiller-namespace ${var.tiller_namespace} \
         --service-account tiller \
         --tiller-tls \
