@@ -13,7 +13,7 @@ provider "tls" {}
 # ------------------------------------------------------------------------------
 
 locals {
-  tls_dir       = "${var.custom_tls_dir == "" ? var.tiller_namespace : var.custom_tls_dir}"
+  tls_dir       = "${var.secrets_dir}/${var.custom_tls_dir == "" ? var.tiller_namespace : var.custom_tls_dir}/${var.helm_dir_name}"
 }
 
 # Root CA Key
@@ -41,7 +41,7 @@ resource "tls_self_signed_cert" "root" {
 }
 
 resource "local_file" "ca_cert" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/${var.ca_cert_filename}"
+  filename = "${local.tls_dir}/${var.ca_cert_filename}"
   content  = "${tls_self_signed_cert.root.cert_pem}"
 }
 
@@ -88,12 +88,12 @@ resource "tls_locally_signed_cert" "tiller_server" {
 }
 
 resource "local_file" "tiller_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/${var.tiller_key_filename}"
+  filename = "${local.tls_dir}/${var.tiller_key_filename}"
   content  = "${tls_private_key.tiller_server.private_key_pem}"
 }
 
 resource "local_file" "tiller_cert" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/${var.tiller_cert_filename}"
+  filename = "${local.tls_dir}/${var.tiller_cert_filename}"
   content  = "${tls_locally_signed_cert.tiller_server.cert_pem}"
 }
 
@@ -133,11 +133,11 @@ resource "tls_locally_signed_cert" "helm_client" {
 }
 
 resource "local_file" "helm_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/${var.helm_key_filename}"
+  filename = "${local.tls_dir}/${var.helm_key_filename}"
   content  = "${tls_private_key.helm_client.private_key_pem}"
 }
 
 resource "local_file" "helm_cert" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/${var.helm_cert_filename}"
+  filename = "${local.tls_dir}/${var.helm_cert_filename}"
   content  = "${tls_locally_signed_cert.helm_client.cert_pem}"
 }
