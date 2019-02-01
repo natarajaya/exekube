@@ -40,13 +40,6 @@ resource "tls_self_signed_cert" "root" {
   }
 }
 
-/*
-resource "local_file" "ca_key" {
-  filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/ca.key.pem"
-  content  = "${tls_private_key.root.private_key_pem}"
-}
-*/
-
 resource "local_file" "ca_cert" {
   filename = "${var.secrets_dir}/${local.tls_dir}/${var.helm_dir_name}/ca.cert.pem"
   content  = "${tls_self_signed_cert.root.cert_pem}"
