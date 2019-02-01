@@ -16,3 +16,23 @@ variable "helm_dir_name" {
 variable "tiller_namespace" {
   default = "kube-system"
 }
+
+variable "ca_cert_filename" {
+  default = "ca.cert.pem"
+}
+
+variable "tiller_key_filename" {
+  default = "tiller.key.pem"
+}
+
+variable "tiller_cert_filename" {
+  default = "tiller.cert.pem"
+}
+
+variable "helm_key_filename" {
+  default = "helm.key.pem"
+}
+
+variable "helm_cert_filename" {
+  default = "helm.cert.pem"
+}

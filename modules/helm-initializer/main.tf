@@ -56,9 +56,9 @@ resource "null_resource" "install_tiller" {
         --service-account tiller \
         --tiller-tls \
         --tiller-tls-verify \
-        --tls-ca-cert=${local.tls_dir}/ca.cert.pem \
-        --tiller-tls-cert=${local.tls_dir}/tiller.cert.pem \
-        --tiller-tls-key=${local.tls_dir}/tiller.key.pem \
+        --tls-ca-cert=${local.tls_dir}/${var.ca_cert_filename} \
+        --tiller-tls-cert=${local.tls_dir}/${var.tiller_cert_filename} \
+        --tiller-tls-key=${local.tls_dir}/${var.tiller_key_filename} \
         --override 'spec.template.spec.containers[0].command'='{/tiller,--storage=secret}'
       RETRIES=10
       RETRY_COUNT=1
@@ -67,9 +67,9 @@ resource "null_resource" "install_tiller" {
         echo "[Try $RETRY_COUNT of $RETRIES] Waiting for Tiller..."
         helm version \
           --tls --tls-verify \
-          --tls-ca-cert=${local.tls_dir}/ca.cert.pem \
-          --tls-cert=${local.tls_dir}/helm.cert.pem \
-          --tls-key=${local.tls_dir}/helm.key.pem \
+          --tls-ca-cert=${local.tls_dir}/${var.ca_cert_filename} \
+          --tls-cert=${local.tls_dir}/${var.helm_cert_filename} \
+          --tls-key=${local.tls_dir}/${var.helm_key_filename} \
           --tiller-connection-timeout ${var.tiller_connection_timeout} > /dev/null 2> /dev/null
         if [ "$?" == "0" ]; then
           TILLER_READY="true"
@@ -95,9 +95,9 @@ resource "null_resource" "install_tiller" {
       helm reset --force \
         --tiller-namespace ${var.tiller_namespace} \
         --tls --tls-verify \
-        --tls-ca-cert=${local.tls_dir}/ca.cert.pem \
-        --tls-cert=${local.tls_dir}/helm.cert.pem \
-        --tls-key=${local.tls_dir}/helm.key.pem \
+        --tls-ca-cert=${local.tls_dir}/${var.ca_cert_filename} \
+        --tls-cert=${local.tls_dir}/${var.helm_cert_filename} \
+        --tls-key=${local.tls_dir}/${var.helm_key_filename} \
         --tiller-connection-timeout ${var.tiller_connection_timeout}
     EOF
   }
