@@ -43,9 +43,20 @@ data "external" "tiller_status" {
   ]
 }
 
+# tiller_version detects when the version of the Helm client is newer.
+
+data "external" "tiller_version" {
+  program = [
+    "bash",
+    "-c",
+    "HELM_VERSION_CLIENT=$$(helm version --client --short); jq -n --arg version \"$$HELM_VERSION_CLIENT\" '{tillerClientVersion:$$version}'",
+  ]
+}
+
 resource "null_resource" "install_tiller" {
   triggers {
     tiller_ready_replicas = "${data.external.tiller_status.result.readyReplicas}"
+    tiller_version        = "${data.external.tiller_version.result.tillerClientVersion}"
   }
 
   provisioner "local-exec" {
