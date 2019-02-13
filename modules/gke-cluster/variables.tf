@@ -33,7 +33,8 @@ variable "region" {
 }
 
 variable "additional_zones" {
-  default = []
+  description = "Specify zones in which to spin up worker nodes (only if region is not set)"
+  default     = []
 }
 
 variable "enable_kubernetes_alpha" {
