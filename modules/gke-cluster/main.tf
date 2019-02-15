@@ -134,8 +134,6 @@ resource "google_container_cluster" "cluster-regional" {
   name     = "${var.cluster_name}"
   region   = "${var.region}"
 
-  additional_zones = "${var.additional_zones}"
-
   initial_node_count      = "${var.initial_node_count}"
   node_version            = "${var.kubernetes_version}"
   min_master_version      = "${var.kubernetes_version}"
