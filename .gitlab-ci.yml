@@ -6,6 +6,8 @@ build:
   stage: build
   script:
     - docker-compose build google
+  only:
+    - master@gpii-ops/exekube
 
 push:
   stage: push
