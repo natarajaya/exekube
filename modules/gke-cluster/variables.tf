@@ -107,3 +107,13 @@ variable "update_timeout" {
 variable "delete_timeout" {
   default = "10m"
 }
+
+variable "istio_disabled" {
+  default     = true
+  description = "Disable Istio add-on"
+}
+
+variable "istio_auth" {
+  default     = "AUTH_MUTUAL_TLS"
+  description = "Set auth mechanism for Istio add-on"
+}
