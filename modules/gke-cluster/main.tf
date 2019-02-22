@@ -69,6 +69,11 @@ resource "google_container_cluster" "cluster" {
     network_policy_config {
       disabled = false
     }
+
+    istio_config {
+      disabled = "${var.istio_disabled}"
+      auth     = "${var.istio_auth}"
+    }
   }
 
   monitoring_service = "${var.monitoring_service}"
@@ -162,6 +167,11 @@ resource "google_container_cluster" "cluster-regional" {
 
     network_policy_config {
       disabled = false
+    }
+
+    istio_config {
+      disabled = "${var.istio_disabled}"
+      auth     = "${var.istio_auth}"
     }
   }
 
