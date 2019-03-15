@@ -18,6 +18,10 @@ variable "keyring_name" {
   default = "keyring"
 }
 
+variable "keyring_location" {
+  default = "global"
+}
+
 variable "storage_location" {
   default = "europe-west1"
 }

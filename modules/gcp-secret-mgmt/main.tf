@@ -34,7 +34,7 @@ resource "null_resource" "add_audit_config" {
 
 resource "google_kms_key_ring" "key_ring" {
   name     = "${var.keyring_name}"
-  location = "global"
+  location = "${var.keyring_location}"
 
   provisioner "local-exec" {
     command = "sleep 10"
