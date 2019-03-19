@@ -41,31 +41,12 @@ variable "enable_kubernetes_alpha" {
   default = "false"
 }
 
-variable "oauth_scopes" {
-  type = "list"
-
-  default = [
-    "https://www.googleapis.com/auth/compute",
-    "https://www.googleapis.com/auth/devstorage.read_only",
-    "https://www.googleapis.com/auth/logging.write",
-    "https://www.googleapis.com/auth/monitoring",
-  ]
-}
-
-variable "node_type" {
-  default = "n1-standard-2"
-}
-
-variable "node_image_type" {
-  default = "COS"
-}
-
 variable "initial_node_count" {
-  default = 2
+  default = 1
 }
 
 variable "kubernetes_version" {
-  default = "1.10.5-gke.0"
+  default = "1.12.5-gke.10"
 }
 
 variable "monitoring_service" {

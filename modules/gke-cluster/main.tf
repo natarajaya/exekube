@@ -42,8 +42,9 @@ resource "google_container_cluster" "cluster" {
 
   additional_zones = "${var.additional_zones}"
 
-  initial_node_count      = "${var.initial_node_count}"
-  node_version            = "${var.kubernetes_version}"
+  remove_default_node_pool = true
+  initial_node_count       = "${var.initial_node_count}"
+
   min_master_version      = "${var.kubernetes_version}"
   enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
   enable_legacy_abac      = "false"
@@ -84,18 +85,6 @@ resource "google_container_cluster" "cluster" {
   maintenance_policy {
     daily_maintenance_window {
       start_time = "03:00"
-    }
-  }
-
-  node_config {
-    machine_type = "${var.node_type}"
-    disk_size_gb = 200
-    oauth_scopes = "${var.oauth_scopes}"
-    image_type   = "${var.node_image_type}"
-
-    labels {
-      project = "${var.project_id}"
-      pool    = "default"
     }
   }
 
@@ -141,8 +130,9 @@ resource "google_container_cluster" "cluster-regional" {
   name     = "${var.cluster_name}"
   region   = "${var.region}"
 
-  initial_node_count      = "${var.initial_node_count}"
-  node_version            = "${var.kubernetes_version}"
+  remove_default_node_pool = true
+  initial_node_count       = "${var.initial_node_count}"
+
   min_master_version      = "${var.kubernetes_version}"
   enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
   enable_legacy_abac      = "false"
@@ -183,18 +173,6 @@ resource "google_container_cluster" "cluster-regional" {
   maintenance_policy {
     daily_maintenance_window {
       start_time = "03:00"
-    }
-  }
-
-  node_config {
-    machine_type = "${var.node_type}"
-    disk_size_gb = 200
-    oauth_scopes = "${var.oauth_scopes}"
-    image_type   = "${var.node_image_type}"
-
-    labels {
-      project = "${var.project_id}"
-      pool    = "default"
     }
   }
 
