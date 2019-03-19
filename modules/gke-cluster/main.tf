@@ -32,6 +32,8 @@ resource "null_resource" "region_or_zone" {
   "ERROR: Only one of region and main_compute_zone may be set." = true
 }
 
+data "google_compute_default_service_account" "default" {}
+
 resource "google_container_cluster" "cluster" {
   provider = "google-beta"
   count    = "${var.region == "" ? 1 : 0}"

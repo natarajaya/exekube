@@ -117,3 +117,73 @@ variable "istio_auth" {
   default     = "AUTH_MUTUAL_TLS"
   description = "Set auth mechanism for Istio add-on"
 }
+
+variable "primary_pool_min_node_count" {
+  default     = 1
+  description = "Primary Node pool Min node count"
+}
+
+variable "primary_pool_max_node_count" {
+  default     = 1
+  description = "Primary Node pool Max node count"
+}
+
+variable "primary_pool_initial_node_count" {
+  default     = 1
+  description = "Primary Node pool Initial node count"
+}
+
+variable "primary_pool_auto_repair" {
+  default     = true
+  description = "Primary Node pool Auto repair enabled"
+}
+
+variable "primary_pool_auto_upgrade" {
+  default     = true
+  description = "Primary Node pool Auto upgrade enabled"
+}
+
+variable "primary_pool_disk_size_gb" {
+  default     = 200
+  description = "Primary Node pool Disk size in GB"
+}
+
+variable "primary_pool_disk_type" {
+  default     = "pd-standard"
+  description = "Primary Node pool Disk type"
+}
+
+variable "primary_pool_machine_type" {
+  default     = "n1-standard-2"
+  description = "Primary Node pool Machine type"
+}
+
+variable "primary_pool_image_type" {
+  default     = "COS"
+  description = "Primary Node pool Image type"
+}
+
+variable "primary_pool_oauth_scopes" {
+  default     = ["gke-default"]
+  description = "Primary Node pool OAuth scopes"
+}
+
+variable "primary_pool_service_account" {
+  default     = ""
+  description = "Primary Node pool Service account"
+}
+
+variable "node_pool_create_timeout" {
+  default     = "30m"
+  description = "Node pool Create timeout"
+}
+
+variable "node_pool_update_timeout" {
+  default     = "30m"
+  description = "Node pool Update timeout"
+}
+
+variable "node_pool_delete_timeout" {
+  default     = "30m"
+  description = "Node pool Delete timeout"
+}
