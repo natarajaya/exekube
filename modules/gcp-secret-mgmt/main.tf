@@ -10,6 +10,10 @@ terraform {
 provider "google" {
   project     = "${var.project_id}"
   credentials = "${var.serviceaccount_key}"
+
+  # Setting an alias allows 'terraform import' to handle variables correctly. /shrug
+  # https://github.com/hashicorp/terraform/issues/13018#issuecomment-291547654
+  alias = "google"
 }
 
 # ------------------------------------------------------------------------------
@@ -34,11 +38,15 @@ resource "null_resource" "add_audit_config" {
 
 resource "google_kms_key_ring" "key_ring" {
   name     = "${var.keyring_name}"
-  location = "global"
+  location = "${var.keyring_location}"
 
   provisioner "local-exec" {
     command = "sleep 10"
   }
+
+  # We must specify the provider due to the workaround for
+  # https://github.com/hashicorp/terraform/issues/13018#issuecomment-291547654
+  provider = "google.google"
 }
 
 # ------------------------------------------------------------------------------
@@ -59,6 +67,10 @@ resource "google_storage_bucket" "gcs_buckets" {
   storage_class = "REGIONAL"
   location      = "${var.storage_location}"
   force_destroy = true
+
+  # We must specify the provider due to the workaround for
+  # https://github.com/hashicorp/terraform/issues/13018#issuecomment-291547654
+  provider = "google.google"
 }
 
 # ------------------------------------------------------------------------------
