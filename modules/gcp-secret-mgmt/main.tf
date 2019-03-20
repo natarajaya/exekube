@@ -58,6 +58,10 @@ resource "google_kms_crypto_key" "encryption_keys" {
 
   name     = "${element(var.encryption_keys, count.index)}"
   key_ring = "${google_kms_key_ring.key_ring.id}"
+
+  # We must specify the provider due to the workaround for
+  # https://github.com/hashicorp/terraform/issues/13018#issuecomment-291547654
+  provider = "google.google"
 }
 
 resource "google_storage_bucket" "gcs_buckets" {
