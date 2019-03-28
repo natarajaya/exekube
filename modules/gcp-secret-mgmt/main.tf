@@ -44,6 +44,18 @@ resource "google_kms_key_ring" "key_ring" {
     command = "sleep 10"
   }
 
+  # KMS Keyrings are indestructible. When Terraform "destroys" them, it
+  # disables and marks for deletion each Key in the Keyring. This forces us to
+  # handle Keyrings specially (e.g. not destroying this module as part of the
+  # regular `rake destroy` workflow, the workflow for migrating between
+  # regions).
+  #
+  # Therefore, destroying this module is usually a mistake that is going to
+  # cause trouble, and we prevent it.
+  lifecycle {
+    prevent_destroy = true
+  }
+
   # We must specify the provider due to the workaround for
   # https://github.com/hashicorp/terraform/issues/13018#issuecomment-291547654
   provider = "google.google"
@@ -58,6 +70,11 @@ resource "google_kms_crypto_key" "encryption_keys" {
 
   name     = "${element(var.encryption_keys, count.index)}"
   key_ring = "${google_kms_key_ring.key_ring.id}"
+
+  # See note in key_ring.
+  lifecycle {
+    prevent_destroy = true
+  }
 
   # We must specify the provider due to the workaround for
   # https://github.com/hashicorp/terraform/issues/13018#issuecomment-291547654
