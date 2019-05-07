@@ -8,7 +8,7 @@ help:                     ## Prints list of tasks
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' Makefile
 
 build:                    ## Build image as latest
-	docker-compose build google
+	CI_COMMIT_TAG="latest" docker-compose build google
 
 build-tag:                ## Build image as tag (use CI_COMMIT_TAG env var)
 	@CI_COMMIT_TAG="$${CI_COMMIT_TAG:?Required variable not set}"
