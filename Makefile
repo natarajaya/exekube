@@ -2,7 +2,7 @@
 .DEFAULT_GOAL:= help
 .ONESHELL:
 
-DOCKER_IMAGE ?= "gpii/exekube"
+DOCKER_IMAGE ?= gpii/exekube
 
 help:                     ## Prints list of tasks
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' Makefile
