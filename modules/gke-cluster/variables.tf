@@ -46,7 +46,7 @@ variable "initial_node_count" {
 }
 
 variable "kubernetes_version" {
-  default = "1.12.5-gke.10"
+  default = "1.12.7-gke.7"
 }
 
 variable "monitoring_service" {
