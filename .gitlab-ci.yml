@@ -1,32 +1,19 @@
 stages:
   - build
-  - push
 
-build-master:
+build-push-master:
   stage: build
   script:
     - make build
+    - make push
   only:
     refs:
       - master
 
-push-master:
-  stage: push
-  script:
-    - make push
-  only:
-    - tags
-
-build-tag:
+build-push-tag:
   stage: build
   script:
     - make build-tag
-  only:
-    - tags
-
-push-tag:
-  stage: push
-  script:
     - make push-tag
   only:
     - tags
