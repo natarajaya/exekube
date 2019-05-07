@@ -2,16 +2,31 @@ stages:
   - build
   - push
 
-build:
+build-master:
   stage: build
   script:
-    - docker-compose build google
+    - make build
   only:
-    - master@gpii-ops/exekube
+    refs:
+      - master
 
-push:
+push-master:
   stage: push
   script:
-    - docker push gpii/exekube:0.4.0-google
+    - make push
   only:
-    - master@gpii-ops/exekube
+    - tags
+
+build-tag:
+  stage: build
+  script:
+    - make build-tag
+  only:
+    - tags
+
+push-tag:
+  stage: push
+  script:
+    - make push-tag
+  only:
+    - tags
