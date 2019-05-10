@@ -45,11 +45,12 @@ resource "google_container_cluster" "cluster" {
   remove_default_node_pool = true
   initial_node_count       = "${var.initial_node_count}"
 
-  min_master_version      = "${var.kubernetes_version}"
-  enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
-  enable_legacy_abac      = "false"
-  network                 = "${var.network_name}"
-  subnetwork              = "nodes"
+  min_master_version          = "${var.kubernetes_version}"
+  enable_kubernetes_alpha     = "${var.enable_kubernetes_alpha}"
+  enable_binary_authorization = "${var.enable_binary_authorization}"
+  enable_legacy_abac          = false
+  network                     = "${var.network_name}"
+  subnetwork                  = "nodes"
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "pods"
@@ -133,11 +134,12 @@ resource "google_container_cluster" "cluster-regional" {
   remove_default_node_pool = true
   initial_node_count       = "${var.initial_node_count}"
 
-  min_master_version      = "${var.kubernetes_version}"
-  enable_kubernetes_alpha = "${var.enable_kubernetes_alpha}"
-  enable_legacy_abac      = "false"
-  network                 = "${var.network_name}"
-  subnetwork              = "nodes"
+  min_master_version          = "${var.kubernetes_version}"
+  enable_kubernetes_alpha     = "${var.enable_kubernetes_alpha}"
+  enable_binary_authorization = "${var.enable_binary_authorization}"
+  enable_legacy_abac          = false
+  network                     = "${var.network_name}"
+  subnetwork                  = "nodes"
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "pods"
