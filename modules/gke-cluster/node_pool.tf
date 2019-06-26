@@ -35,6 +35,10 @@ resource "google_container_node_pool" "primary" {
     workload_metadata_config {
       node_metadata = "SECURE"
     }
+
+    metadata = {
+      disable-legacy-endpoints = "false"
+    }
   }
 
   timeouts {
@@ -84,6 +88,10 @@ resource "google_container_node_pool" "primary-regional" {
 
     workload_metadata_config {
       node_metadata = "SECURE"
+    }
+
+    metadata = {
+      disable-legacy-endpoints = "false"
     }
   }
 
