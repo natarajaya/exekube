@@ -66,6 +66,11 @@ variable "dashboard_disabled" {
   description = "Disable Kubernetes Dashboard"
 }
 
+variable "http_load_balancing_disabled" {
+  default     = false
+  description = "Disable GKE HTTP (L7) load balancing controller addon"
+}
+
 variable "master_auth_username" {
   default     = ""
   description = "The username to use for HTTP basic authentication (setting both password and username to empty strings disables legacy basic authentication)"
