@@ -1,5 +1,5 @@
 output "static_ip_address" {
-  value = "${google_compute_address.ingress_controller_ip.0.address}"
+  value = "${element(concat(google_compute_address.ingress_controller_ip.*.address, list("")), 0)}"
 }
 
 output "dns_zones" {
