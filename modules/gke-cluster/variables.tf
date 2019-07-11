@@ -45,6 +45,19 @@ variable "enable_binary_authorization" {
   default = false
 }
 
+variable "binary_authorization_admission_whitelist_patterns" {
+  # This value cannot be empty.
+  default = "PLACE.HOLDER/PATTERN"
+}
+
+variable "binary_authorization_evaluation_mode" {
+  default = "ALWAYS_ALLOW"
+}
+
+variable "binary_authorization_enforcement_mode" {
+  default = "ENFORCED_BLOCK_AND_AUDIT_LOG"
+}
+
 variable "initial_node_count" {
   default = 1
 }
