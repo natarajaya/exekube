@@ -53,44 +53,9 @@ variable "binary_authorization_enforcement_mode" {
   default = "ENFORCED_BLOCK_AND_AUDIT_LOG"
 }
 
-variable "binary_authorization_admission_whitelist_pattern_0" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_1" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_2" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_3" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_4" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_5" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_6" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
-}
-
-variable "binary_authorization_admission_whitelist_pattern_7" {
-  # This value cannot be empty, so use a placeholder value that satisfies Google's API.
-  default = "PLACE.HOLDER/PATTERN"
+variable "binary_authorization_admission_whitelist_patterns" {
+  # This list cannot be empty, so use a placeholder value that satisfies Google's API.
+  default = ["PLACE.HOLDER/PATTERN"]
 }
 
 variable "initial_node_count" {
