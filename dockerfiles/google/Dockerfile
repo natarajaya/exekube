@@ -43,14 +43,15 @@ RUN apk --no-cache add \
         ruby \
         ruby-json
 
-ENV GOOGLE_CLOUD_MONITORING_VERSION 0.29.2
-ENV GOOGLE_CLOUD_LOGGING_VERSION 1.5.7
+COPY gemfiles/google /gemfiles/google/
+ENV BUNDLE_GEMFILE /gemfiles/google/Gemfile
+
 RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev && \
-    gem install --no-ri google-protobuf:3.6.1 etc grpc --platform=ruby && \
-    gem install --no-ri --no-rdoc rake google-cloud-monitoring:${GOOGLE_CLOUD_MONITORING_VERSION} google-cloud-logging:${GOOGLE_CLOUD_LOGGING_VERSION} && \
+    gem install --no-ri --no-rdoc bundler rake && \
+    bundle install && \
     apk del \
         g++ \
         make \
