@@ -49,10 +49,10 @@ ENV BUNDLE_GEMFILE /gemfiles/google/Gemfile
 RUN apk --no-cache add \
         g++ \
         make \
-        ruby-dev && \
-    gem install --no-ri --no-rdoc bundler rake && \
-    bundle install && \
-    apk del \
+        ruby-dev \
+    && gem install --no-ri --no-rdoc bundler rake \
+    && bundle install \
+    && apk del \
         g++ \
         make \
         ruby-dev
