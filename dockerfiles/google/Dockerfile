@@ -50,8 +50,8 @@ RUN apk --no-cache add \
         g++ \
         make \
         ruby-dev \
-    && gem install --no-ri --no-rdoc bundler rake \
-    && bundle install \
+    && gem install --no-ri --no-rdoc bundler:2.0.2 rake:12.3.3 \
+    && bundle install --no-cache --frozen --without test \
     && apk del \
         g++ \
         make \
