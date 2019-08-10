@@ -4,3 +4,4 @@ gem 'google-cloud-monitoring', '~> 0.30.0'
 gem 'google-cloud-logging', '~> 1.6.6'
 gem 'grpc'
 gem 'etc'
+gem 'rspec', :group => :test
