@@ -3,3 +3,4 @@
 !cli/
 !modules/
 !terraform-plugins/
+!gemfiles/
