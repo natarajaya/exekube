@@ -76,6 +76,9 @@ resource "google_binary_authorization_policy" "policy" {
     name_pattern = "gcr.io/gke-release/istio/*"
   }
   admission_whitelist_patterns {
+    name_pattern = "gcr.io/gke-release/istio/prometheus/*"
+  }
+  admission_whitelist_patterns {
     name_pattern = "gcr.io/istio-release/*"
   }
   admission_whitelist_patterns {
