@@ -38,5 +38,5 @@ variable "apply_audit_config" {
 
 variable "bucket_versioning_enabled" {
   description = "Set this to true to enable versioning for GS bucket that stores encrypted secrets"
-	default     = false
+  default     = false
 }
